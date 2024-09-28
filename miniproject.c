@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 #include <unistd.h>
 
 
@@ -15,15 +15,17 @@ int main(){
     float prix[MAX_BOOK];
     int n = 0;
     int choix;
+    int quantiteupdate = 0;
  do
  {
     printf("\033[0;33m\n===show menu===\n\033[0m");
     printf("\033[0;34m1.Ajouter un livre\n\033[0m");
     printf("\033[0;34m2.Afficher tous les livres\n\033[0m");
-    printf("\033[0;34m3.update or modifiee un livre\n\033[0m");
-    printf("\033[0;34m4.Supprimer un livre\n\033[0m");
-    printf("\033[0;34m5.Afficher le nombre total de livres en stock\n\033[0m");
-    printf("\033[0;34m6.Quitter\n");
+    printf("\033[0;34m3.recherche un livre\n\033[0m");
+    printf("\033[0;34m4.update le stock dun livre un livre\n\033[0m");
+    printf("\033[0;34m5.supprimer  un livre\n\033[0m");
+    printf("\033[0;34m6.Afficher le nombre total de livres en stock\n\033[0m");
+    printf("\033[0;34m7.Quitter\n");
     printf("Entrez votre choix : ");
     scanf("%d", &choix);
 
@@ -39,19 +41,19 @@ int main(){
     scanf("%d", &quantite[nbLivres]);
      nbLivres++;
    }else {
-        printf("Stock plein. Impossible d'ajouter plus de livres.\n");
+        printf("Stock plein.\n");
    }
 }
 
   if (choix == 2){
-    if(nbLivres >= 1){
-        printf("liste de livre disponible\t");
-        for(int i = 0 ; i < nbLivres; i++ ){
-            printf("Titre : %s, Auteur : %s, Prix : %.2f, Quantite : %d\n", titres[i], auteurs[i], prix[i], quantite[i]);
-        }
+    if(nbLivres == 0 ){
         
+    printf("\033[0;31mthere is nothing here\033[0m");
     }else{
-        printf("\033[0;31mthere is nothing here\033[0m");
+        for( int i = 0 ; i <nbLivres ; i++){
+                    printf("Titre : %s\n, Auteur : %s\n, Prix : %.2f\n, Quantite : %d\n", titres[i], auteurs[i], prix[i], quantite[i]);
+
+        }
         
     }
    }
@@ -62,7 +64,7 @@ int main(){
             int trouve = 0;
             for (int i = 0; i < nbLivres; i++) {
                 if (strcmp(titres[i], titrerecherche) == 0) {
-                    printf("Livre trouve : Titre : %s, Auteur : %s, Prix : %.2f, Quantite : %d\n", titres[i], auteurs[i], prix[i], quantite[i]);
+                    printf("\nLivre trouve: Titre : %s\n \nAuteur %s :  \nPrix : %.2f \nQuantite : %d", titres[i], auteurs[i], prix[i], quantite[i]);
                     trouve = 1;
                     break;
                 }
@@ -71,7 +73,30 @@ int main(){
                 printf("Livre non trouve.\n");
             }
         }
- 
+
+        if ( choix == 4){
+
+            printf("enter the name of the book you wanna update his stock :");
+            scanf("%s", titrerecherche);
+            int trouve = 0;
+
+            for( int i  = 0 ; i < nbLivres; i++){
+
+                if(strcmp(titres[i],titrerecherche) == 0){
+                    printf("enter la nouvelle quantite :");
+                    scanf("%d",&quantiteupdate);
+                    quantite[i] = quantiteupdate;
+
+                    printf("la quantite has updated\n");
+                    trouve = 1;
+                    break;
+                }
+            }
+        }
+
+        if ( choix == 5){
+
+        }
  } while (choix !=7);
  
 
