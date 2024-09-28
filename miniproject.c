@@ -94,8 +94,35 @@ int main(){
             }
         }
 
-        if ( choix == 5){
+        if( choix == 5){
+            
+        if (choix == 5) {
+            printf("Entrez le titre du livre a supprimer : ");
+            scanf("%s", titrerecherche);
+            int trouve = 0;
+            for (int i = 0; i < nbLivres; i++) {
+                if (strcmp(titres[i], titrerecherche) == 0) {
+                    for (int j = i; j < nbLivres - 1; j++) {
+                        strcpy(titres[j], titres[j + 1]);
+                        strcpy(auteurs[j], auteurs[j + 1]);
+                        prix[j] = prix[j + 1];
+                        quantite[j] = quantite[j + 1];
+                    }
+                    nbLivres--;
+                    printf("Livre supprime avec succes.\n");
+                    trouve = 1;
+                    break;
+                }
+            }
+            if (!trouve) {
+                printf("Livre non trouve.\n");
+            }
+        }
 
+        }
+
+        if ( choix == 6){
+     printf("le nombre total des livre et %d\n", nbLivres);
         }
  } while (choix !=7);
  
