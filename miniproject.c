@@ -95,8 +95,6 @@ int main(){
         }
 
         if( choix == 5){
-            
-        if (choix == 5) {
             printf("Entrez le titre du livre a supprimer : ");
             scanf("%s", titrerecherche);
             int trouve = 0;
@@ -117,7 +115,7 @@ int main(){
             if (!trouve) {
                 printf("Livre non trouve.\n");
             }
-        }
+        
 
         }
 
