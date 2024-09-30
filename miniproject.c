@@ -48,11 +48,11 @@ int main(){
 
             printf("prix:");
             scanf("%f", &prix[nblivres]);
-            getchar();
+            
       
             printf("quantite:");
             scanf("%d", &quantite[nblivres]);
-            getchar();
+            
 
             nblivres++;
              printf("\033[0;32mlivre ete ajouter avec succes.\033[0m\n");
