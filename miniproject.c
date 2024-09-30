@@ -38,7 +38,7 @@ int main(){
    if ( choix == 1 ){
         if(nblivres < MAX_BOOK){
             printf("titre:");
-            getchar(); // pour supprimer buffer of scanf()
+            getchar(); 
             fgets(titre[nblivres], MAX_BOOK, stdin);
             titre[nblivres][strcspn(titre[nblivres], "\n")] = 0;
 
@@ -53,8 +53,10 @@ int main(){
             scanf("%d", &quantite[nblivres]);
 
             nblivres++;
+             printf("\033[0;32mlivre ete ajouter avec succes.\033[0m\n");
+
         }else {
-        printf("Stock plein.\n");
+        printf("\033[0;31mstock plein.\033[0m\n");
    }
    }
 
@@ -96,7 +98,7 @@ int main(){
                 }
             }
             if (!trouve) {
-                printf("Livre non trouve.\n");
+                printf("\033[0;31mLivre non trouve.\033[0m\n");
             }
         }
 
@@ -116,13 +118,13 @@ int main(){
                     scanf("%d",&quantiteupdate);
                     quantite[i] = quantiteupdate;
 
-                    printf("la quantite has updated\n");
+                    printf(" \033[0;32mla quantite has updated\n\033[0m");
                     trouve = 1;
                     break;
                 }
             }
             if (!trouve) {
-    printf("Livre non trouve.\n");
+    printf("\033[0;31mLivre non trouve.\033[0m\n");
 }
 
         }
@@ -142,13 +144,13 @@ int main(){
                         quantite[j] = quantite[j + 1];
                     }
                     nblivres--;
-                    printf("Livre supprime avec succes.\n");
+                    printf(" \033[0;32mLivre supprime avec succes.\033[0m\n");
                     trouve = 1;
                     break;
                 }
             }
             if (!trouve) {
-                printf("Livre non trouve.\n");
+                printf("\033[0;31mLivre non trouve.\033[0m\n");
             }
 
 
