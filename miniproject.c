@@ -1,24 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
-
-int main(){
-
-    const int MAX_BOOK = 100 ;
+int main() {
+    const int MAX_BOOK = 100;
     char titre[MAX_BOOK][30];
     char auteur[MAX_BOOK][30];
-    char recherche[30];
     int nblivres = 0;
     int quantite[MAX_BOOK];
     float prix[MAX_BOOK];
-    int n = 0;
-    int i ;
     int choix;
+    char recherche[30];
+    int i ;
+
+    int n =0;
     int quantiteupdate = 0;
- do
- {
+    char input[50];  // Buffer for input strings
+
+    do {
         printf("\033[0;33m**********************MENU****************************\n\033[0m");
         printf("*                                                    *\n");
         printf("\033[0;34m*     1-Ajouter un livre au stock.                   *\n\033[0m");
@@ -32,35 +31,58 @@ int main(){
         printf("******************************************************\n");
         printf("\n");
 
-        printf("choiser un nombre entre(1 et 7):");
-        scanf("%d", &choix);
+        printf("Choisir un nombre entre (1 et 7): ");
+        while (fgets(input, sizeof(input), stdin)) {
+            if (sscanf(input, "%d", &choix) == 1 && choix >= 1 && choix <= 7) {
+                break;  
+            }
+            printf("\033[0;31mErreur! Veuillez entrer un nombre valide.\033[0m\n");
+            printf("Choisir un nombre entre (1 et 7): ");
+        }
 
-   if ( choix == 1 ){
-        if(nblivres < MAX_BOOK){
-            printf("titre:");
-            getchar(); 
-            fgets(titre[nblivres], MAX_BOOK, stdin);
-            titre[nblivres][strcspn(titre[nblivres], "\n")] = 0;
+        if (choix == 1) {
+            if (nblivres < MAX_BOOK) {
+                printf("Titre: ");
+                fgets(titre[nblivres], MAX_BOOK, stdin);
+                titre[nblivres][strcspn(titre[nblivres], "\n")] = 0;  
 
-            printf("auteur:");
-            fgets(auteur[nblivres], MAX_BOOK, stdin);
-            auteur[nblivres][strcspn(auteur[nblivres], "\n")] = 0;
+                printf("Auteur: ");
+                fgets(auteur[nblivres], MAX_BOOK, stdin);
+                auteur[nblivres][strcspn(auteur[nblivres], "\n")] = 0;  
 
-            printf("prix:");
-            scanf("%f", &prix[nblivres]);
-            
-      
-            printf("quantite:");
-            scanf("%d", &quantite[nblivres]);
-            
+                
+                float prixInput;
+                do {
+                    printf("Prix: ");
+                    fgets(input, sizeof(input), stdin);  
+                    if (sscanf(input, "%f", &prixInput) == 1) {
+                        prix[nblivres] = prixInput;  
+                        break;
+                    } else {
+                        printf("\033[0;31mErreur! Veuillez entrer un prix valide.\033[0m\n");
+                    }
+                } while (1);
 
-            nblivres++;
-             printf("\033[0;32mlivre ete ajouter avec succes.\033[0m\n");
+                
+                int quantiteInput;
+                do {
+                    printf("quantite: ");
+                    fgets(input, sizeof(input), stdin);  
+                    if (sscanf(input, "%d", &quantiteInput) == 1) {
+                        quantite[nblivres] = quantiteInput;  
+                        break;
+                    } else {
+                        printf("\033[0;31mErreur  entrer un nombre.\033[0m\n");
+                    }
+                } while (1);
 
-        }else {
-        printf("\033[0;31mstock plein.\033[0m\n");
-   }
-   }
+                nblivres++;
+                printf("\033[0;32mLivre ajouté avec succès.\033[0m\n");
+
+            } else {
+                printf("\033[0;31mStock plein.\033[0m\n");
+            }
+        }
 
    if (choix == 2){
     if(nblivres == 0 ){
@@ -84,8 +106,6 @@ int main(){
 
  if (choix == 3) {
             printf("entrez le titre du livre : ");
-            getchar();
-
             fgets(recherche, MAX_BOOK, stdin);
             recherche[strcspn(recherche, "\n")] = 0;
             int trouve = 0;
@@ -107,7 +127,7 @@ int main(){
         if ( choix == 4){
 
             printf("enter the name of the book you wanna update his stock :");
-            getchar();
+            
 
             fgets(recherche, MAX_BOOK, stdin);
             recherche[strcspn(recherche, "\n")] = 0;
@@ -133,7 +153,7 @@ int main(){
 
         if( choix == 5){
             printf("Entrez le titre du livre pour supprimer : ");
-            getchar();
+            
             fgets(recherche, MAX_BOOK, stdin);
             recherche[strcspn(recherche, "\n")] = 0;
             int trouve = 0;
@@ -151,7 +171,7 @@ int main(){
                     break;
                 }
             }
-            if (!trouve) {
+            if (!trouve) { 
                 printf("\033[0;31mLivre non trouve.\033[0m\n");
             }
 
