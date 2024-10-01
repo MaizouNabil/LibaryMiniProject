@@ -36,7 +36,7 @@ int main() {
             if (sscanf(input, "%d", &choix) == 1 && choix >= 1 && choix <= 7) {
                 break;  
             }
-            printf("\033[0;31mErreur! Veuillez entrer un nombre valide.\033[0m\n");
+            printf("\033[0;31mErreur  entrer un nombre entre 1 et 7.\033[0m\n");
             printf("Choisir un nombre entre (1 et 7): ");
         }
 
@@ -59,7 +59,7 @@ int main() {
                         prix[nblivres] = prixInput;  
                         break;
                     } else {
-                        printf("\033[0;31mErreur! Veuillez entrer un prix valide.\033[0m\n");
+                        printf("\033[0;31mErreur  entrer un nombre.\033[0m\n");
                     }
                 } while (1);
 
@@ -126,7 +126,7 @@ int main() {
 
         if ( choix == 4){
 
-            printf("enter the name of the book you wanna update his stock :");
+            printf("enter the name of the book  :");
             
 
             fgets(recherche, MAX_BOOK, stdin);
